@@ -76,7 +76,20 @@ The decisions I'm **least** sure about, in order of how much they worry me:
    CSV example never shows a blank boolean cell, so I chose a concrete
    value over an ambiguous empty one. I'm not confident that's what a
    recruiter reading the sheet would actually want.
-4. **Smaller and secondary**: ranking naukri lowest-trusted for *current*
+4. **The `FIELD_SOURCE_TRUST` table as a whole (`src/config.py`) is reasoned,
+   not measured.** Every rank in it — LinkedIn over Naukri for title/company,
+   Naukri over LinkedIn for salary/experience/notice, LinkedIn over Naukri
+   over Naukri for location, enrichment over everyone for email/phone — is a
+   plausibility argument about how each platform's data likely got there
+   (self-maintained profile vs. structured HR form vs. a stated preference
+   vs. a paid verification call), not a result checked against any ground
+   truth. There's no way to know, from this dataset alone, whether LinkedIn's
+   title actually turns out more accurate than Naukri's more often; I ranked
+   by "which source is closest to the primary fact," not by measured
+   outcomes, because no outcome data exists here to measure against. A real
+   system would want to validate these rankings against actual accuracy
+   before trusting them at volume.
+5. **Smaller and secondary**: ranking naukri lowest-trusted for *current*
    location (because its field is `pref_location`, a preference) while
    trusting it most for salary/notice is defensible but is an inversion
    worth someone double-checking against real recruiter behavior.
