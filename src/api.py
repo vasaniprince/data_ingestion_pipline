@@ -15,18 +15,34 @@ from . import config, db
 
 app = FastAPI(title="SARAL candidate service")
 
-
-@app.on_event("startup")
-def _startup():
-    conn = db.connect()
-    try:
-        db.ensure_schema(conn)
-    finally:
-        conn.close()
+# The API is a read-only consumer of the schema. It deliberately does NOT
+# call db.ensure_schema() on startup: only the CLI tools (ingest/enrich/
+# export) ever bootstrap the schema, so there is exactly one path that can
+# run the migration -- no second caller for it to race against. See
+# src/db.py's ensure_schema() docstring / INFRA.md for the failure mode this
+# avoids (two processes both seeing "no tables yet" and racing on
+# `CREATE EXTENSION IF NOT EXISTS`, which is not safe under true
+# concurrency). docker-compose.yml's `db` healthcheck plus running the
+# ingest command first (per README) is what guarantees the schema exists
+# before the API is asked to serve anything real.
 
 
 def _conn():
-    return db.connect(config.DB_DSN)
+    conn = db.connect(config.DB_DSN)
+    if not db.tables_exist(conn):
+        conn.close()
+        # A read-only existence check, not a migration attempt -- this can't
+        # race with anything. Surfaces a clear 503 instead of an unhandled
+        # 500/UndefinedTable if the API is queried before the ingest
+        # pipeline has ever been run (schema bootstraps only from the CLI,
+        # see the note above).
+        raise HTTPException(
+            status_code=503,
+            detail="database not yet initialized -- run the ingest pipeline "
+                    "first (see README: docker compose exec api bash "
+                    "scripts/run_pipeline.sh)",
+        )
+    return conn
 
 
 def _candidate_summary_row(row):
