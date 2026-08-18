@@ -4,6 +4,18 @@ One row per real person, created once, updated forever, with provenance.
 See `DECISIONS.md` for the normalization/identity/merge policy this code
 obeys, `INFRA.md` for the scale-up story, and `WRITEUP.md` for the summary.
 
+## Prerequisites
+
+- Docker Desktop (or Docker Engine + Compose v2), running.
+- Nothing else — Python/Postgres both run inside containers.
+
+## Get the code
+
+```bash
+git clone https://github.com/vasaniprince/data_ingestion_pipline.git
+cd data_ingestion_pipline
+```
+
 ## Run it
 
 ```bash
