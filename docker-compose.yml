@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: saral
+      POSTGRES_PASSWORD: saral
+      POSTGRES_DB: saral
+    ports:
+      # host:container -- 55432 on the host matches this project's existing
+      # convention (avoids colliding with a local Postgres on 5432); the api
+      # service below talks to this container over the compose network on
+      # the INTERNAL port 5432, not 55432.
+      - "55432:5432"
+    volumes:
+      - saral_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U saral"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://saral:saral@db:5432/saral
+    ports:
+      - "8000:8000"
+    volumes:
+      # generated CSV/run-report artifacts land on the host
+      - ./out:/app/out
+      - ./data:/app/data
+
+volumes:
+  saral_pgdata:

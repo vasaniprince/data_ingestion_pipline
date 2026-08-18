@@ -1,0 +1,215 @@
+{
+  "batch": "batch_02",
+  "started_at": "2026-08-18T12:11:52.078131Z",
+  "duration_ms": 435,
+  "rows_in": 16,
+  "rows_rejected": 0,
+  "rejection_reasons": {},
+  "entities_created": 5,
+  "entities_updated": 7,
+  "entities_unchanged_noop": 2,
+  "merges": [
+    {
+      "candidate_id": "cand_01M0ACHZAH5M9MMYYE3EERYDE3",
+      "rule": "linkedin_handle_exact",
+      "rows": [
+        1,
+        9,
+        101
+      ]
+    },
+    {
+      "candidate_id": "cand_01M0ACHZBDW3F305JVEZ0B3N51",
+      "rule": "linkedin_handle_exact",
+      "rows": [
+        2,
+        102
+      ]
+    },
+    {
+      "candidate_id": "cand_01M0ACHZBV63WXQZ4CPGWRRZT7",
+      "rule": "linkedin_handle_exact",
+      "rows": [
+        3,
+        103
+      ]
+    },
+    {
+      "candidate_id": "cand_01M0ACHZCB6EBTHF29PYSHAHBZ",
+      "rule": "linkedin_handle_exact",
+      "rows": [
+        4,
+        14,
+        106
+      ]
+    },
+    {
+      "candidate_id": "cand_01M0ACHZCYYCZMK71ETC4Z0B7H",
+      "rule": "name_company_location",
+      "rows": [
+        5,
+        104,
+        116
+      ]
+    },
+    {
+      "candidate_id": "cand_01M0ACHZDQXDZHVXTS5DREF9G8",
+      "rule": "linkedin_handle_exact",
+      "rows": [
+        7,
+        105
+      ]
+    },
+    {
+      "candidate_id": "cand_01M0ACHZEEM4GTZ0P38TS1F9Y7",
+      "rule": "linkedin_handle_exact",
+      "rows": [
+        8,
+        15,
+        107
+      ]
+    },
+    {
+      "candidate_id": "cand_01M0ACHZEV9BJXZ6ERM3DBXEYY",
+      "rule": "email_exact",
+      "rows": [
+        19,
+        113
+      ]
+    },
+    {
+      "candidate_id": "cand_01M0ACHZMK8PKY2VBY6AQRSTEC",
+      "rule": "email_exact",
+      "rows": [
+        17,
+        112
+      ]
+    },
+    {
+      "candidate_id": "cand_01M0ACJ00EHYTSQ1JF7FY239FF",
+      "rule": "linkedin_handle_exact",
+      "rows": [
+        108,
+        115
+      ]
+    }
+  ],
+  "merges_declined": [],
+  "fields_changed": 23,
+  "conflicts_resolved": [
+    {
+      "field": "experience_months",
+      "winner": "naukri_export",
+      "loser": "linkedin_scraper",
+      "rule": "source_trust"
+    },
+    {
+      "field": "current_title",
+      "winner": "linkedin_scraper",
+      "loser": "linkedin_scraper",
+      "rule": "newer_observation_same_source"
+    },
+    {
+      "field": "experience_months",
+      "winner": "naukri_export",
+      "loser": "linkedin_scraper",
+      "rule": "source_trust"
+    },
+    {
+      "field": "current_title",
+      "winner": "linkedin_scraper",
+      "loser": "linkedin_scraper",
+      "rule": "newer_observation_same_source"
+    },
+    {
+      "field": "current_company",
+      "winner": "linkedin_scraper",
+      "loser": "linkedin_scraper",
+      "rule": "newer_observation_same_source"
+    },
+    {
+      "field": "open_to_work",
+      "winner": "linkedin_scraper",
+      "loser": "linkedin_scraper",
+      "rule": "newer_observation_same_source"
+    },
+    {
+      "field": "experience_months",
+      "winner": "naukri_export",
+      "loser": "linkedin_scraper",
+      "rule": "source_trust"
+    },
+    {
+      "field": "open_to_work",
+      "winner": "linkedin_scraper",
+      "loser": "linkedin_scraper",
+      "rule": "newer_observation_same_source"
+    },
+    {
+      "field": "current_company",
+      "winner": "linkedin_scraper",
+      "loser": "github_crawl",
+      "rule": "source_trust"
+    },
+    {
+      "field": "current_title",
+      "winner": "linkedin_scraper",
+      "loser": "naukri_export",
+      "rule": "source_trust"
+    },
+    {
+      "field": "current_company",
+      "winner": "linkedin_scraper",
+      "loser": "naukri_export",
+      "rule": "source_trust"
+    },
+    {
+      "field": "experience_months",
+      "winner": "naukri_export",
+      "loser": "naukri_export",
+      "rule": "newer_observation_same_source"
+    },
+    {
+      "field": "annual_salary_inr",
+      "winner": "naukri_export",
+      "loser": "naukri_export",
+      "rule": "newer_observation_same_source"
+    },
+    {
+      "field": "notice_period_days",
+      "winner": "naukri_export",
+      "loser": "naukri_export",
+      "rule": "newer_observation_same_source"
+    },
+    {
+      "field": "experience_months",
+      "winner": "naukri_export",
+      "loser": "linkedin_scraper",
+      "rule": "source_trust"
+    },
+    {
+      "field": "current_company",
+      "winner": "linkedin_scraper",
+      "loser": "github_crawl",
+      "rule": "source_trust"
+    },
+    {
+      "field": "open_to_work",
+      "winner": "github_crawl",
+      "loser": "github_crawl",
+      "rule": "newer_observation_same_source"
+    }
+  ],
+  "out_of_order_records": 1,
+  "nulls_ignored": 2,
+  "enrichment": {
+    "budget_calls": 15,
+    "calls_made": 0,
+    "calls_served_from_cache": 0,
+    "negative_cache_hits": 0,
+    "spend_inr": 0.0,
+    "saved_inr": 0.0,
+    "contactable_before": 0,
+    "contactable_after": 0
+  }
+}

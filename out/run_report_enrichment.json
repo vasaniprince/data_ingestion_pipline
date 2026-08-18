@@ -1,0 +1,39 @@
+{
+  "batch": "enrichment",
+  "started_at": "2026-08-18T12:11:32.132710Z",
+  "duration_ms": 27,
+  "rows_in": 6,
+  "rows_rejected": 0,
+  "rejection_reasons": {},
+  "entities_created": 0,
+  "entities_updated": 0,
+  "entities_unchanged_noop": 0,
+  "merges": [],
+  "merges_declined": [],
+  "fields_changed": 0,
+  "conflicts_resolved": [],
+  "out_of_order_records": 0,
+  "nulls_ignored": 0,
+  "enrichment": {
+    "budget_calls": 2,
+    "calls_made": 2,
+    "calls_served_from_cache": 0,
+    "negative_cache_hits": 0,
+    "spend_inr": 0.18,
+    "saved_inr": 0.0,
+    "contactable_before": 15,
+    "contactable_after": 17
+  },
+  "skipped_no_key": [
+    "cand_01M0ACHBWF2D6525CAQ11018SF",
+    "cand_01M0ACHC99W96ZRE7FM64ASNZZ"
+  ],
+  "skipped_budget": [
+    "cand_01M0ACHC6DRXMCSWGXW1NH8NTA",
+    "cand_01M0ACHBNX4YQRPDW4W9Y21M5A"
+  ],
+  "selected": [
+    "cand_01M0ACHBQMGGN0W7PQ7NQWEX7E",
+    "cand_01M0ACHC5K8W4Z50VEK6SRCP2A"
+  ]
+}

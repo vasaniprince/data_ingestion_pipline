@@ -1,0 +1,160 @@
+{
+  "_meta": {
+    "provider": "MockEnrich v1",
+    "endpoint": "POST /v1/lookup  body: {\"key\": \"<linkedin_handle|email>\"}",
+    "cost_per_call_inr": 0.09,
+    "budget_calls": 15,
+    "note": "Every call is billed, including not_found. Repeat calls for the same key are billed again unless you cache."
+  },
+  "aarav-mehta-b12a4": {
+    "status": "found",
+    "work_email": "aarav@razorpay.com",
+    "personal_email": "aarav.mehta@gmail.com",
+    "mobile": "+919845098450",
+    "current_company": "Razorpay",
+    "current_title": "Staff Engineer",
+    "confidence": 0.94,
+    "last_verified": "2026-08-14"
+  },
+  "ishita-rao-ml": {
+    "status": "found",
+    "work_email": "ishita@kagilabs.ai",
+    "personal_email": "ishita.rao@gmail.com",
+    "mobile": "+919845011223",
+    "current_company": "Kagi Labs",
+    "current_title": "Founding ML Engineer",
+    "confidence": 0.91,
+    "last_verified": "2026-08-15"
+  },
+  "rohan-deshpande-de": {
+    "status": "found",
+    "work_email": "rohan.d@zeta.tech",
+    "personal_email": null,
+    "mobile": null,
+    "current_company": "Zeta",
+    "current_title": "Data Engineer II",
+    "confidence": 0.72,
+    "last_verified": "2026-06-30"
+  },
+  "vikram-singh-platform": {
+    "status": "found",
+    "work_email": "vikram.singh@phonepe.com",
+    "personal_email": "vikram.singh.plt@gmail.com",
+    "mobile": "+919900112233",
+    "current_company": "PhonePe",
+    "current_title": "Staff Engineer",
+    "confidence": 0.88,
+    "last_verified": "2026-08-11"
+  },
+  "arjun-pillai-recsys": {
+    "status": "found",
+    "work_email": "arjun.p@swiggy.in",
+    "personal_email": "arjun.pillai.dev@gmail.com",
+    "mobile": "+918050443322",
+    "current_company": "Swiggy",
+    "current_title": "Senior ML Engineer",
+    "confidence": 0.86,
+    "last_verified": "2026-08-13"
+  },
+  "tanvi-shah-ai": {
+    "status": "found",
+    "work_email": null,
+    "personal_email": "tanvi.shah.ai@gmail.com",
+    "mobile": "+919909887766",
+    "current_company": "FutureTech Labs",
+    "current_title": "AI Engineer",
+    "confidence": 0.79,
+    "last_verified": "2026-08-02"
+  },
+  "lakshmi-iyer-analytics": {
+    "status": "found",
+    "work_email": "lakshmi.iyer@chargebee.com",
+    "personal_email": null,
+    "mobile": "+919840556677",
+    "current_company": "Chargebee",
+    "current_title": "Analytics Engineer",
+    "confidence": 0.83,
+    "last_verified": "2026-07-29"
+  },
+  "gaurav-malhotra-aws": {
+    "status": "found",
+    "work_email": "gauravm@amazon.com",
+    "personal_email": null,
+    "mobile": null,
+    "current_company": "Amazon",
+    "current_title": "SDE III",
+    "confidence": 0.68,
+    "last_verified": "2026-05-18"
+  },
+  "neha-gupta-py": {
+    "status": "found",
+    "work_email": "neha.gupta@jupiter.money",
+    "personal_email": "neha.gupta.eng@gmail.com",
+    "mobile": "+919999888777",
+    "current_company": "Jupiter",
+    "current_title": "Backend Engineer",
+    "confidence": 0.9,
+    "last_verified": "2026-08-16"
+  },
+  "zoya-ansari-de": {
+    "status": "found",
+    "work_email": null,
+    "personal_email": "hello@zoya.dev",
+    "mobile": "+917042119988",
+    "current_company": "Self-employed",
+    "current_title": "Freelance Data Engineer",
+    "confidence": 0.64,
+    "last_verified": "2026-04-12"
+  },
+  "sneha-kulkarni-analyst": {
+    "status": "found",
+    "work_email": "sneha.kulkarni@pwc.com",
+    "personal_email": "snehakulkarni@gmail.com",
+    "mobile": "+919700123456",
+    "current_company": "PwC India",
+    "current_title": "Senior Data Analyst",
+    "confidence": 0.87,
+    "last_verified": "2026-08-15"
+  },
+  "nikhil-reddy-java": {
+    "status": "not_found"
+  },
+  "aarav-mehta-supply-chain": {
+    "status": "not_found"
+  },
+  "hello@zoya.dev": {
+    "status": "found",
+    "work_email": null,
+    "personal_email": "hello@zoya.dev",
+    "mobile": "+917042119988",
+    "current_company": "Self-employed",
+    "current_title": "Freelance Data Engineer",
+    "confidence": 0.64,
+    "last_verified": "2026-04-12"
+  },
+  "sameer-khan-mern": {
+    "status": "found",
+    "work_email": null,
+    "personal_email": "sameer.khan.dev@gmail.com",
+    "mobile": "+919876543210",
+    "current_company": "Growisto",
+    "current_title": "Full Stack Developer",
+    "confidence": 0.55,
+    "last_verified": "2026-03-04"
+  },
+  "priya-nair": {
+    "status": "not_found"
+  },
+  "apillai-ml": {
+    "status": "not_found"
+  },
+  "divyamenon": {
+    "status": "not_found"
+  },
+  "siddrao": {
+    "status": "not_found"
+  },
+  "adityav": {
+    "status": "not_found"
+  }
+}
