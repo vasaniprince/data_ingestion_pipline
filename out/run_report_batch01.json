@@ -1,7 +1,7 @@
 {
   "batch": "batch_01",
-  "started_at": "2026-08-18T16:22:21.309601Z",
-  "duration_ms": 328,
+  "started_at": "2026-08-18T17:55:18.029748Z",
+  "duration_ms": 341,
   "rows_in": 21,
   "rows_rejected": 2,
   "rejection_reasons": {
@@ -12,7 +12,7 @@
   "entities_unchanged_noop": 0,
   "merges": [
     {
-      "candidate_id": "cand_01M0ATWMXSMWWWFE8EXYRZWHW4",
+      "candidate_id": "cand_01M0B06V2AREGJ163YS5EVHGSP",
       "rule": "linkedin_handle_exact",
       "rows": [
         1,
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "candidate_id": "cand_01M0ATWMZTNH49ZDAHXCZM1GKB",
+      "candidate_id": "cand_01M0B06V323EFBTNV1Y2F2KSSE",
       "rule": "linkedin_handle_exact",
       "rows": [
         4,
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "candidate_id": "cand_01M0ATWN1CZESRBFQYMYS43QW7",
+      "candidate_id": "cand_01M0B06V3RTFFPY4JE52C5D85A",
       "rule": "linkedin_handle_exact",
       "rows": [
         8,

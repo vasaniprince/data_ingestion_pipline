@@ -127,6 +127,11 @@ For each incoming field value against the candidate's current value, in order:
    reporting it isn't a meaningful "we tried and got nothing" signal worth
    logging.
 2. **Source trust**, per field (`FIELD_SOURCE_TRUST`):
+   - `full_name`: `linkedin_scraper` beats `naukri_export`/`enrichment`
+     (tied) beats `github_crawl`. Same reasoning as title/company below —
+     LinkedIn is the person's own self-entered profile name; naukri and a
+     verified-enrichment record are both reasonable but secondary; a github
+     login/display name is the least likely to be a person's real full name.
    - `current_title` / `current_company`: `linkedin_scraper` beats
      `naukri_export` beats `github_crawl`. LinkedIn is the person's own
      current self-description; naukri's designation/employer strings are

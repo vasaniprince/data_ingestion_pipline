@@ -42,18 +42,35 @@ default we're stuck with.
 
 ## 2. Monthly cost (worked arithmetic)
 
-- **Compute**: batch job ~2 vCPU/4GB, ~2h/day (current single-threaded
-  throughput is ~40 rows/sec per `out/run_report_batch02.json`'s timing; 1M
-  rows chunked across a few parallel tasks fits under 2h) at ≈$0.04/vCPU-hr
-  + $0.004/GB-hr → (2×0.04 + 4×0.004) × 2h × 30 ≈ **$5.80/month**. API: one
-  always-on 0.5vCPU/1GB task → (0.5×0.04 + 1×0.004) × 24 × 30 ≈
+- **Compute**: per row, `identity.process_record` does roughly 5-10
+  sequential DB round trips (1-3 identifier lookups in `_match_candidates`,
+  a `field_provenance` read per scalar field before deciding, the
+  provenance/change_log writes, the identity upserts). At ~1ms per round
+  trip on an Aurora endpoint in the same AZ, that's ~5-10ms/row → roughly
+  100-150 rows/sec per single-threaded worker → 1,000,000 rows takes
+  ~2-2.75 hours on one worker. Split across **4 parallel Fargate tasks**
+  (partition the batch by candidate-key hash), that's ~35-45 minutes;
+  budgeting 1 hour/day with margin, at 2 vCPU/4GB per task and
+  ≈$0.04/vCPU-hr + $0.004/GB-hr: `4 tasks × 1h × 30 days × (2×0.04 + 4×0.004)`
+  = 4 × 1 × 30 × 0.096 ≈ **$11.50/month**. This estimate is deliberately
+  padded (assumed round-trip latency, not measured) rather than
+  extrapolated from this repo's own tiny 16-row test batch, which finishes
+  in milliseconds dominated by fixed connection/startup overhead and isn't
+  a reliable per-row rate to scale from.
+  API: one always-on 0.5vCPU/1GB task → (0.5×0.04 + 1×0.004) × 24 × 30 ≈
   **$17/month**.
-- **Storage**: 1M rows/day × ~3-5KB fully-loaded (raw JSON + candidate/
-  identity/provenance/change_log rows) ≈ 4GB/day ≈ 120GB/month growth ×
-  ≈$0.10/GB-month ≈ **$12-35/month**, compounding monthly with no retention
-  policy (see §5).
-- **S3**: raw landing + CSV/report archive, negligible traffic ≈
-  **$3-5/month**.
+- **Storage**: 1M rows/day × ~4KB fully-loaded (raw JSON + candidate/
+  identity/provenance/change_log rows) ≈ 4GB/day growth. With no retention
+  policy, this compounds: after 30 days ≈120GB (**$12/month** at
+  ≈$0.10/GB-month), after 90 days ≈360GB (**$36/month**) — shown at two
+  points rather than an unexplained range, since it keeps growing linearly
+  without an archival policy (see §5 for why partitioning + archiving to
+  S3 becomes necessary well before 10x volume).
+- **S3**: raw landing zone + CSV/report archive. Raw JSONL is comparable in
+  volume to the DB's own raw-payload storage (~2-3GB/day) but S3 standard
+  storage (~$0.023/GB-month) is roughly 4x cheaper per GB than Aurora, so
+  even with similar volume it stays small: **~$2-7/month** over the same
+  30-90 day window.
 - **Enrichment API**: assuming ~5% of 1M daily rows are genuinely new
   candidates with a real, callable identifier we haven't billed before (the
   other 95% are re-crawls of people already resolved, or people with no
@@ -62,8 +79,12 @@ default we're stuck with.
   roughly 50×**. Infra cost here is a rounding error next to a per-call
   paid API at this volume, which is exactly why the budget/cache discipline
   built in Part 4 matters more at scale, not less.
-- **Total**: order-of-magnitude **~$25-30/month AWS infra + ~$1,600/month
-  enrichment**, not a quote.
+- **Total, actually summed from the lines above**: at day 30,
+  $11.50 (batch) + $17 (API) + $12 (storage) + $2 (S3) = **$42.50/month AWS
+  infra**; at day 90, $11.50 + $17 + $36 + $7 = **$71.50/month** as storage
+  compounds — **+ ~$1,600/month enrichment** on top either way.
+  Order-of-magnitude, not a quote — but arithmetically consistent with its
+  own line items above, not a separately-guessed round number.
 
 ## 3. It fails at 3 AM, halfway through
 
@@ -99,6 +120,19 @@ every run already emits in `run_report_*.json` (`src/report.py`) with zero
 new instrumentation. Alarm if a run's ratio exceeds ~2-3× its trailing
 7-day median. ("Monitoring" is not this answer — this is one metric, one
 threshold, already sitting in output the pipeline produces every run.)
+
+**Known false-positive case, stated honestly**: a genuine sourcing surge
+(a new crawler onboarded, a big job-fair pull) can push this ratio up by
+the same 2-3× with dedup working perfectly — the metric can't distinguish
+"the matching logic broke" from "today really did bring in unusually many
+new people," because both look identical from the ratio's point of view.
+That's why the alarm should trigger a person checking (did a new
+source/crawler go live today? do a sample of the new entities look like
+real distinct people or suspicious near-duplicates? was anything touching
+`normalize_email`/`normalize_linkedin`/`_match_candidates` deployed
+recently?), not an automatic rollback. The tradeoff is deliberate: occasional
+false alarms on real-growth days, in exchange for a metric that costs zero
+new instrumentation and reliably surfaces the dangerous case.
 
 ## 5. What breaks first at 10x volume (10M rows/day)
 

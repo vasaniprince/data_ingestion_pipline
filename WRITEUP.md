@@ -154,7 +154,11 @@ remain:
   likely to break at 10x volume.
 - The one metric that would catch dedup silently breaking overnight
   (`entities_created / rows_in` against its 7-day median, per `INFRA.md`
-  §4) is named but not wired to any real alerting today.
+  §4) is named but not wired to any real alerting today. It also can't
+  distinguish a real dedup break from a genuine sourcing surge (a new
+  crawler onboarded, a big job-fair pull) — either one moves the ratio the
+  same way, so the alarm is designed to trigger a person checking, not an
+  automatic rollback.
 
 ## What I'd build next with one more week
 

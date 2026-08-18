@@ -1,7 +1,7 @@
 {
   "batch": "batch_02",
-  "started_at": "2026-08-18T16:22:22.602672Z",
-  "duration_ms": 267,
+  "started_at": "2026-08-18T17:55:19.281151Z",
+  "duration_ms": 272,
   "rows_in": 16,
   "rows_rejected": 0,
   "rejection_reasons": {},
@@ -10,7 +10,7 @@
   "entities_unchanged_noop": 2,
   "merges": [
     {
-      "candidate_id": "cand_01M0ATWMXSMWWWFE8EXYRZWHW4",
+      "candidate_id": "cand_01M0B06V2AREGJ163YS5EVHGSP",
       "rule": "linkedin_handle_exact",
       "rows": [
         1,
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "candidate_id": "cand_01M0ATWMZ05TC939V2XTATYJ56",
+      "candidate_id": "cand_01M0B06V2SEKW8KP41K3PWTRD4",
       "rule": "linkedin_handle_exact",
       "rows": [
         2,
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "candidate_id": "cand_01M0ATWMZFRN5XHM7ND0NE01SK",
+      "candidate_id": "cand_01M0B06V2Z9KFH8FVSS7DQ5709",
       "rule": "linkedin_handle_exact",
       "rows": [
         3,
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "candidate_id": "cand_01M0ATWMZTNH49ZDAHXCZM1GKB",
+      "candidate_id": "cand_01M0B06V323EFBTNV1Y2F2KSSE",
       "rule": "linkedin_handle_exact",
       "rows": [
         4,
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "candidate_id": "cand_01M0ATWN066N0CF4PMQMCPFGXT",
+      "candidate_id": "cand_01M0B06V37RG22V3J2ND5R197N",
       "rule": "name_company_location",
       "rows": [
         5,
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "candidate_id": "cand_01M0ATWN10VKGSYA5GEXV8GGNX",
+      "candidate_id": "cand_01M0B06V3JQ2K3K8FNJBZQAH38",
       "rule": "linkedin_handle_exact",
       "rows": [
         7,
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "candidate_id": "cand_01M0ATWN1CZESRBFQYMYS43QW7",
+      "candidate_id": "cand_01M0B06V3RTFFPY4JE52C5D85A",
       "rule": "linkedin_handle_exact",
       "rows": [
         8,
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "candidate_id": "cand_01M0ATWN1NGGBGYQN16PCAKDWY",
+      "candidate_id": "cand_01M0B06V3W345333SYBW6D2C9W",
       "rule": "email_exact",
       "rows": [
         19,
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "candidate_id": "cand_01M0ATWN4NFY2KB3TPQASA4QQR",
+      "candidate_id": "cand_01M0B06V5MPDH06HBNBAGFCNYN",
       "rule": "email_exact",
       "rows": [
         17,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "candidate_id": "cand_01M0ATWP7R9WF31CM0PERB08N1",
+      "candidate_id": "cand_01M0B06W8H36MDP1XZB5034XXA",
       "rule": "linkedin_handle_exact",
       "rows": [
         108,

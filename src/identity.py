@@ -7,11 +7,15 @@ Resolution rules, ranked by strength (see DECISIONS.md):
     3. phone_exact
     4. github_login_exact
   COMBINATION, only consulted when NO strong identifier matched anything:
-    5. name_company_location -- normalized_name AND company-key AND city ALL
-       match a single existing candidate. Two or more independent weak
-       signals agreeing is the "evidence in combination" the brief asks for;
-       it only fires when the record has both a company and a city to check,
-       and only when exactly one candidate matches (ambiguity -> no match).
+    5. name_company_city_title -- normalized_name AND company-key AND city
+       AND current_title ALL match a single existing candidate. Three
+       independent weak signals agreeing is the "evidence in combination"
+       the brief asks for (an earlier two-signal version -- name+company+city
+       -- was reviewed and rejected as too weak; see DECISIONS.md §2.2/§7 and
+       WRITEUP.md); it only fires when the record has company, city, AND
+       title to check, and only when exactly one candidate matches
+       (ambiguity -> no match). Matches are flagged combination_match_applied
+       for audit.
   WEAK, NEVER merges alone: normalized_name. A same-name row with no shared
   strong identifier AND no company+city combination match is DECLINED
   (separate candidate + name_collision_reviewed flag), because a false merge
